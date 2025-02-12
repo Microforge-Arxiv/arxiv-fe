@@ -1,44 +1,17 @@
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
+import { SearchBar } from "@/components/dashboard/searchbar";
+import { DataTable } from "@/components/dashboard/data-table";
 
-export default async function Dashboard() {
-  const cookieStore = await cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, options);
-            });
-          } catch (error) {
-            // The `set` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
-          }
-        },
-      },
-    },
-  );
-  
-  const { data: { session } } = await supabase.auth.getSession()
-  
-  if (!session) {
-    redirect('/sign-in')
-  }
-
+export default function DashboardPage() {
   return (
-    <div className="flex-1 w-full flex flex-col gap-20 items-center">
-      <div className="w-full max-w-4xl flex justify-between items-center p-8">
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div className="space-y-2">
         <h1 className="text-2xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground">
+          Search your data using natural language queries
+        </p>
       </div>
-      {/* Add your dashboard content here */}
+      <SearchBar />
+      <DataTable data={null} />
     </div>
-  )
+  );
 } 
