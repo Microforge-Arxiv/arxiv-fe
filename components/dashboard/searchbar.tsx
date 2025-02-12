@@ -48,23 +48,12 @@ export function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex gap-2">
-      <Input
-        type="text"
-        placeholder="Ask a question about your data..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="flex-1"
-        disabled={isLoading}
+    <div className="relative">
+      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <Input 
+        placeholder="Who are you looking for?"
+        className="pl-9 h-12 text-lg"
       />
-      <Button type="submit" disabled={isLoading}>
-        {isLoading ? (
-          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-        ) : (
-          <Search className="h-4 w-4 mr-2" />
-        )}
-        Search
-      </Button>
-    </form>
+    </div>
   );
 } 

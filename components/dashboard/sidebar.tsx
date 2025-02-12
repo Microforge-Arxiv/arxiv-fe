@@ -36,18 +36,18 @@ export function Sidebar() {
   }, []);
 
   return (
-    <div className="h-full border-r bg-sidebar">
+    <div className="flex h-full flex-col">
       <div className="p-4 border-b">
         <h2 className="text-lg font-semibold text-sidebar-foreground">Previous Searches</h2>
       </div>
-      <ScrollArea className="h-[calc(100vh-5rem)]">
-        <div className="p-2">
+      <ScrollArea className="flex-1">
+        <div className="p-4 space-y-2">
           {queries.map((query) => (
             <Button
               key={query.id}
               variant="ghost"
               className={cn(
-                "w-full justify-start text-left font-normal my-1",
+                "w-full justify-start text-left font-normal",
                 selectedQuery === query.id && "bg-sidebar-accent text-sidebar-accent-foreground"
               )}
               onClick={() => setSelectedQuery(query.id)}
