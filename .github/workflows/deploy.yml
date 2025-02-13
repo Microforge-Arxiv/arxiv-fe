@@ -16,7 +16,7 @@ jobs:
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
           projectName: arxiv-fe
-          envVariableKeys: NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,NEXT_PUBLIC_GEMINI_API_KEY
+          envVariableKeys: NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,GEMINI_API_KEY,METABASE_URL,METABASE_USERNAME,METABASE_PASSWORD
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           TARGET_NEXT_PUBLIC_SUPABASE_URL: preview,development,production
@@ -26,9 +26,21 @@ jobs:
           TARGET_NEXT_PUBLIC_SUPABASE_ANON_KEY: preview,development,production
           TYPE_NEXT_PUBLIC_SUPABASE_ANON_KEY: encrypted
 
-          NEXT_PUBLIC_GEMINI_API_KEY: ${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
-          TARGET_NEXT_PUBLIC_GEMINI_API_KEY: preview,development,production
-          TYPE_NEXT_PUBLIC_GEMINI_API_KEY: encrypted
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TARGET_GEMINI_API_KEY: preview,development,production
+          TYPE_GEMINI_API_KEY: encrypted
+
+          METABASE_URL: ${{ secrets.METABASE_URL }}
+          TARGET_METABASE_URL: preview,development,production
+          TYPE_METABASE_URL: encrypted
+
+          METABASE_USERNAME: ${{ secrets.METABASE_USERNAME }}
+          TARGET_METABASE_USERNAME: preview,development,production
+          TYPE_METABASE_USERNAME: encrypted
+
+          METABASE_PASSWORD: ${{ secrets.METABASE_PASSWORD }}
+          TARGET_METABASE_PASSWORD: preview,development,production
+          TYPE_METABASE_PASSWORD: encrypted
 
       - uses: amondnet/vercel-action@v20
         with:

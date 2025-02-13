@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +28,14 @@ export function Sidebar() {
 
       if (queries) {
         setQueries(queries);
+        // let dummyQueries = Array.from(Array(100).keys()).map(i => {
+        //   return {
+        //     id: i,
+        //     created_at: "",
+        //     query: "verryyyyy longgggggg assssssss quwerries longgggggg assssssss quwerries"
+        //   }
+        // });
+        // setQueries(dummyQueries);
       }
     }
 
@@ -40,8 +47,8 @@ export function Sidebar() {
       <div className="p-4 border-b">
         <h2 className="text-lg font-semibold text-sidebar-foreground">Previous Searches</h2>
       </div>
-      <ScrollArea className="flex-1">
-        <div className="p-4 space-y-2">
+      <div className="flex-1 w-full overflow-y-auto">
+        <div className="flex flex-col gap-2 p-4">
           {queries.map((query) => (
             <Button
               key={query.id}
@@ -52,11 +59,13 @@ export function Sidebar() {
               )}
               onClick={() => setSelectedQuery(query.id)}
             >
-              <span className="truncate">{query.query}</span>
+              <div className="truncate">
+                {query.query}
+              </div>
             </Button>
           ))}
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 } 

@@ -35,7 +35,7 @@ export const updateSession = async(request: NextRequest) => {
     }
 
     // Protected routes check
-    if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (request.nextUrl.pathname.startsWith('/')) {
       if (!user) {
         return NextResponse.redirect(new URL('/sign-in', request.url));
       }

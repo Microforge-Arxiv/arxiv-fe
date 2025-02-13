@@ -7,12 +7,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-[calc(100vh-4rem)]">
+    <div className="h-[calc(100vh-4rem)] w-screen">
       <ResizablePanelGroup
         direction="horizontal"
         className="h-full"
       >
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={30}>
+        <ResizablePanel defaultSize={15} minSize={15} maxSize={30}>
           <div className="h-full border-r">
             <Sidebar />
           </div>
